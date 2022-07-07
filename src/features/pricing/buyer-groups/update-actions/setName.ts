@@ -9,6 +9,7 @@ export function setName(
 ): UpdateAction<SetNameParameters> {
   return {
     action: "setName",
+    isUnique: true,
     ...parameters,
   };
 }

@@ -1,5 +1,5 @@
-import { UpdateAction } from "./UpdateAction";
-import { UpdateMutationParameters } from "./UpdateMutationParameters";
+import { UpdateAction } from "../@common/UpdateAction";
+import { UpdateMutationParameters } from "../@common/UpdateMutationParameters";
 
 export function buildUpdateMutationParameters(
   id: string,

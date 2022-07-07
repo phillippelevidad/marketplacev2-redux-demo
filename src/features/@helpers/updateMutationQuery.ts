@@ -1,4 +1,4 @@
-import { UpdateMutationParameters } from "./UpdateMutationParameters";
+import { UpdateMutationParameters } from "../@common/UpdateMutationParameters";
 
 export function updateMutationQuery(params: UpdateMutationParameters): any {
   return {

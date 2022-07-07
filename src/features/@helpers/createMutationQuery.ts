@@ -1,4 +1,4 @@
-import { CreateMutationParameters } from "./CreateMutationParameters";
+import { CreateMutationParameters } from "../@common/CreateMutationParameters";
 
 export function createMutationQuery(params: CreateMutationParameters): any {
   return {

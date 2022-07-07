@@ -6,9 +6,9 @@ import { AuthenticateUserParameters as AuthenticateUserMutationParameters } from
 import { User } from "./User";
 import { PaginatedResults } from "../../@common/PaginatedResults";
 import { config } from "../../../config";
-import { prepareHeaders } from "../../@common/prepareHeaders";
-import { getQuery, listQuery } from "../../@common/listQuery";
-import { updateMutationQuery } from "../../@common/updateMutationQuery";
+import { prepareHeaders } from "../../@helpers/prepareHeaders";
+import { getQuery, listQuery } from "../../@helpers/listQuery";
+import { updateMutationQuery } from "../../@helpers/updateMutationQuery";
 
 export const usersSlice = createApi({
   reducerPath: "membership/users",

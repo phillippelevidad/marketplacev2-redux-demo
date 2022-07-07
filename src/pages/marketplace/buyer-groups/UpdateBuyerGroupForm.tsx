@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { buildUpdateMutationParameters } from "../../../features/@common/buildUpdateActions";
-import { setEntityProperty } from "../../../features/@common/setEntityProperty";
+import { buildUpdateMutationParameters } from "../../../features/@helpers/buildUpdateActions";
+import { setEntityProperty } from "../../../features/@helpers/setEntityProperty";
 import {
   useGetBuyerGroupQuery,
   useUpdateBuyerGroupMutation,

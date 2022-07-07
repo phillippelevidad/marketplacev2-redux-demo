@@ -4,14 +4,14 @@ import { GetQueryParameters } from "../../@common/GetQueryParameters";
 import { ListQueryParameters } from "../../@common/ListQueryParameters";
 import { PaginatedResults } from "../../@common/PaginatedResults";
 import { config } from "../../../config";
-import { prepareHeaders } from "../../@common/prepareHeaders";
+import { prepareHeaders } from "../../@helpers/prepareHeaders";
 import { BuyerGroup, NewBuyerGroup } from "./BuyerGroup";
 import { DeleteMutationParameters } from "../../@common/DeleteMutationParameters";
-import { updateMutationQuery } from "../../@common/updateMutationQuery";
-import { deleteMutationQuery } from "../../@common/deleteMutationQuery";
-import { getQuery, listQuery } from "../../@common/listQuery";
+import { updateMutationQuery } from "../../@helpers/updateMutationQuery";
+import { deleteMutationQuery } from "../../@helpers/deleteMutationQuery";
+import { getQuery, listQuery } from "../../@helpers/listQuery";
 import { CreateMutationParameters } from "../../@common/CreateMutationParameters";
-import { createMutationQuery } from "../../@common/createMutationQuery";
+import { createMutationQuery } from "../../@helpers/createMutationQuery";
 
 export const buyerGroupsSlice = createApi({
   reducerPath: "pricing/buyer-groups",
