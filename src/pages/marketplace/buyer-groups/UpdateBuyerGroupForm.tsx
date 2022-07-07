@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { buildUpdateMutationParameters } from "../../../features/@helpers/buildUpdateActions";
-import { setEntityProperty } from "../../../features/@helpers/setEntityProperty";
+import { useUpdateActions } from "../../../features/@helpers/useUpdateActions";
 import {
   useGetBuyerGroupQuery,
   useUpdateBuyerGroupMutation,
@@ -22,30 +22,37 @@ export default function UpdateBuyerGroupForm({
   });
   const [updateBuyerGroup, result] = useUpdateBuyerGroupMutation();
   const [buyerGroup, setBuyerGroup] = useState<BuyerGroup | undefined>();
+  const [updateActions, addUpdateAction, clearUpdateActions] =
+    useUpdateActions();
 
   useEffect(() => {
     setBuyerGroup(data);
   }, [data]);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target;
-    setBuyerGroup(setEntityProperty(buyerGroup, name, value));
+  function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
+    addUpdateAction(setName({ name: event.target.value }));
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (buyerGroup)
+    if (buyerGroup) {
       updateBuyerGroup(
-        buildUpdateMutationParameters(buyerGroup.id, buyerGroup.version, [
-          setName({ name: buyerGroup.name }),
-        ])
+        buildUpdateMutationParameters(
+          buyerGroup.id,
+          buyerGroup.version,
+          updateActions
+        )
       );
+    }
   }
 
   useEffect(() => {
-    result.isSuccess && onUpdate && onUpdate(result.data);
-  }, [result, onUpdate]);
+    if (result.isSuccess) {
+      clearUpdateActions();
+      onUpdate && onUpdate(result.data);
+    }
+  }, [result, clearUpdateActions, onUpdate]);
 
   if (isLoading) return <div>Loading...</div>;
   return (
@@ -57,7 +64,7 @@ export default function UpdateBuyerGroupForm({
           type="text"
           name="name"
           value={buyerGroup?.name}
-          onChange={handleChange}
+          onChange={handleNameChange}
         />
         <br />
         <button type="submit">Update</button>
