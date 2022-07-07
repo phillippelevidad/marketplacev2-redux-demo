@@ -1,57 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { useAuth0 } from "@auth0/auth0-react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
+import { auth0Wrapper } from "./features/auth/auth0Wrapper";
+import MarketplaceHomePage from "./pages/marketplace/home/MarketplaceHomePage";
+import MarketplaceBuyerGroupsPage from "./pages/marketplace/buyer-groups/MarketplaceBuyerGroupsPage";
+import MarketplaceLoginPage from "./pages/marketplace/login/MarketplaceLoginPage";
+import MarketplacePage from "./pages/marketplace/MarketplacePage";
+import SelectMarketplacePage from "./pages/select-marketplace/SelectMarketplacePage";
 
 function App() {
+  // Solution for using @auth0/auth0-react with RTK Query.
+  // https://github.com/reduxjs/redux-toolkit/issues/1331#issuecomment-1080901326
+  const { getAccessTokenSilently } = useAuth0();
+  auth0Wrapper.configure(getAccessTokenSilently);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SelectMarketplacePage />} />
+        <Route path="/marketplace" element={<MarketplacePage />}>
+          <Route path="login" element={<MarketplaceLoginPage />} />
+          <Route
+            path="home"
+            element={<PrivateRoute component={MarketplaceHomePage} />}
+          />
+          <Route
+            path="buyer-groups"
+            element={<PrivateRoute component={MarketplaceBuyerGroupsPage} />}
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
