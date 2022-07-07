@@ -1,4 +1,4 @@
-import { IsoDateTimeString } from "./IsoDateTimeString";
+import { UniqueId } from "./UniqueId";
 
 /**
  * An object that is not defined by its attributes,
@@ -8,5 +8,5 @@ import { IsoDateTimeString } from "./IsoDateTimeString";
  */
 
 export interface Entity {
-  id: IsoDateTimeString;
+  id: UniqueId;
 }
