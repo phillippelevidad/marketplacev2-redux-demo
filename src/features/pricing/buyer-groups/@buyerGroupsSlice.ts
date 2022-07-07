@@ -4,7 +4,7 @@ import { GetQueryParameters } from "../../@common/GetQueryParameters";
 import { ListQueryParameters } from "../../@common/ListQueryParameters";
 import { PaginatedResults } from "../../@common/PaginatedResults";
 import { config } from "../../../config";
-import { prepareHeaders } from "../../@helpers/prepareHeaders";
+import { prepareHeaders } from "../../@common/prepareHeaders";
 import { BuyerGroup, NewBuyerGroup } from "./BuyerGroup";
 import { DeleteMutationParameters } from "../../@common/DeleteMutationParameters";
 import { updateMutationQuery } from "../../@common/updateMutationQuery";

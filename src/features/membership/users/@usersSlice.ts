@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { UpdateMutationParameters as UpdateMutationParameters } from "../../@common/UpdateMutationParameters";
+import { UpdateMutationParameters } from "../../@common/UpdateMutationParameters";
 import { GetQueryParameters } from "../../@common/GetQueryParameters";
 import { ListQueryParameters } from "../../@common/ListQueryParameters";
 import { AuthenticateUserParameters as AuthenticateUserMutationParameters } from "./AuthenticateUserParameters";
 import { User } from "./User";
 import { PaginatedResults } from "../../@common/PaginatedResults";
 import { config } from "../../../config";
-import { prepareHeaders } from "../../@helpers/prepareHeaders";
+import { prepareHeaders } from "../../@common/prepareHeaders";
 import { getQuery, listQuery } from "../../@common/listQuery";
 import { updateMutationQuery } from "../../@common/updateMutationQuery";
 
